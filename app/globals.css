@@ -1,26 +1,48 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --radius: 0.625rem;
+  --background: rgba(255, 255, 255, 1);
+  --text: rgba(0, 0, 0, 1);
+  --stroke: rgba(0, 0, 0, 0.5);
+  --surface: rgba(0, 0, 0, 0.05);
+  --surface-muted: rgba(0, 0, 0, 0.02);
+  --highlight: rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  --background: rgba(0, 0, 0, 1);
+  --text: rgba(255, 255, 255, 1);
+  --stroke: rgba(255, 255, 255, 0.5);
+  --surface: rgba(255, 255, 255, 0.1);
+  --surface-muted: rgba(255, 255, 255, 0.05);
+  --highlight: rgba(255, 255, 255, 0.2);
 }
 
 @theme inline {
+  --font-sans: var(--font-inter);
+  --color-*: initial;
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-text: var(--text);
+  --color-stroke: var(--stroke);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-highlight: var(--highlight);
+  --radius-*: initial;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-stroke outline-stroke/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-text font-sans;
+  }
 }

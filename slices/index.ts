@@ -2,4 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-export const components = {};
+export const components = {
+  links: dynamic(() => import("./Links")),
+  social_links: dynamic(() => import("./SocialLinks")),
+};

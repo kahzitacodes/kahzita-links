@@ -1,0 +1,30 @@
+{
+  "id": "links",
+  "type": "SharedSlice",
+  "name": "Links",
+  "description": "Links",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "links": {
+          "type": "Link",
+          "config": {
+            "label": "Links",
+            "placeholder": "https://rocketseat.com.br",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

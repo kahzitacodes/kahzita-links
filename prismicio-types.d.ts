@@ -74,7 +74,7 @@ type ContentRelationshipFieldWithData<
  */
 export interface HomeDocumentDataLinksItem {}
 
-type HomeDocumentDataSlicesSlice = never;
+type HomeDocumentDataSlicesSlice = SocialLinksSlice | LinksSlice;
 
 /**
  * Content for Home documents
@@ -170,6 +170,122 @@ export type HomeDocument<Lang extends string = string> =
 
 export type AllDocumentTypes = HomeDocument;
 
+/**
+ * Primary content in *Links → Default → Primary*
+ */
+export interface LinksSliceDefaultPrimary {
+  /**
+   * Links field in *Links → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://rocketseat.com.br
+   * - **API ID Path**: links.default.primary.links
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  links: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+}
+
+/**
+ * Default variation for Links Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type LinksSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<LinksSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Links*
+ */
+type LinksSliceVariation = LinksSliceDefault;
+
+/**
+ * Links Shared Slice
+ *
+ * - **API ID**: `links`
+ * - **Description**: Links
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type LinksSlice = prismic.SharedSlice<"links", LinksSliceVariation>;
+
+/**
+ * Item in *SocialLinks → Default → Primary → SocialLinks*
+ */
+export interface SocialLinksSliceDefaultPrimarySociallinksItem {
+  /**
+   * Icon field in *SocialLinks → Default → Primary → SocialLinks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_links.default.primary.sociallinks[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * URL field in *SocialLinks → Default → Primary → SocialLinks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://github.com
+   * - **API ID Path**: social_links.default.primary.sociallinks[].url
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  url: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Primary content in *SocialLinks → Default → Primary*
+ */
+export interface SocialLinksSliceDefaultPrimary {
+  /**
+   * SocialLinks field in *SocialLinks → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_links.default.primary.sociallinks[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  sociallinks: prismic.GroupField<
+    Simplify<SocialLinksSliceDefaultPrimarySociallinksItem>
+  >;
+}
+
+/**
+ * Default variation for SocialLinks Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type SocialLinksSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SocialLinksSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SocialLinks*
+ */
+type SocialLinksSliceVariation = SocialLinksSliceDefault;
+
+/**
+ * SocialLinks Shared Slice
+ *
+ * - **API ID**: `social_links`
+ * - **Description**: SocialLinks
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type SocialLinksSlice = prismic.SharedSlice<
+  "social_links",
+  SocialLinksSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -196,6 +312,15 @@ declare module "@prismicio/client" {
       HomeDocumentDataLinksItem,
       HomeDocumentDataSlicesSlice,
       AllDocumentTypes,
+      LinksSlice,
+      LinksSliceDefaultPrimary,
+      LinksSliceVariation,
+      LinksSliceDefault,
+      SocialLinksSlice,
+      SocialLinksSliceDefaultPrimarySociallinksItem,
+      SocialLinksSliceDefaultPrimary,
+      SocialLinksSliceVariation,
+      SocialLinksSliceDefault,
     };
   }
 }

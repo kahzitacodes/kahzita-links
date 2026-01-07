@@ -1,0 +1,50 @@
+{
+  "id": "social_links",
+  "type": "SharedSlice",
+  "name": "SocialLinks",
+  "description": "SocialLinks",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "sociallinks": {
+          "type": "Group",
+          "config": {
+            "label": "SocialLinks",
+            "repeat": true,
+            "fields": {
+              "icon": {
+                "type": "Image",
+                "config": {
+                  "label": "Icon",
+                  "constraint": {
+                    "width": 48,
+                    "height": 48
+                  },
+                  "thumbnails": []
+                }
+              },
+              "url": {
+                "type": "Link",
+                "config": {
+                  "label": "URL",
+                  "placeholder": "https://github.com",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": false,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
